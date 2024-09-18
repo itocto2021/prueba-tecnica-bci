@@ -38,4 +38,9 @@ public class UsuarioController {
             return new ResponseEntity<>(Collections.singletonMap("mensaje", "El correo ya registrado"), HttpStatus.BAD_REQUEST);
         }
     }
+
+    @GetMapping(produces = "application/json")
+    public ResponseEntity<?> obtenerUsuarios() throws UsuarioException {
+        return new ResponseEntity<>(usuarioService.obtenerUsuarios(),HttpStatus.OK);
+    }
 }

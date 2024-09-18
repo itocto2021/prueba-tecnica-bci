@@ -12,6 +12,8 @@ import com.prueba_tecnica.bci.cl.service.generic.IUsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -42,6 +44,21 @@ public class UsuarioServicesImpl implements IUsuarioServices {
         UsuarioResponse response = responseMapper.toDTO(savedUser);
 
         return response;
+    }
+
+    @Override
+    public List<UsuarioDTO> obtenerUsuarios() throws UsuarioException {
+
+        List<UsuarioBO> users = usuarioRepository.findAll();
+
+        List<UsuarioDTO> usuarioDTOS = new ArrayList<>();
+
+        for (UsuarioBO user: users) {
+            UsuarioDTO dto = usuarioMapper.toDTO(user);
+            usuarioDTOS.add(dto);
+        }
+
+        return usuarioDTOS;
     }
 
 }

@@ -81,3 +81,49 @@ Authorization:Bearer {pegar aqui el token}
   - Debe contener al menos un dígito (0-9).
   - Debe contener al menos un carácter especial de los permitidos (!@#$%^&*(),.?":{}|<>~[]£=).
   - Debe tener al menos 8 caracteres de longitud.
+
+## 4. Extra
+Se creo una api para listar todos los Usuarios creados
+
+- **Método**: `GET`
+- **URI**: `http://localhost:8080/usuario`
+#### Agregamos los Headers
+```
+Accept:application/json
+Authorization:Bearer {pegar aqui el token}
+```
+
+#### Response
+```
+[
+    {
+        "name": "Juan Rodriguez",
+        "email": "juan@rodriguez.org",
+        "password": "A234Tun237t3#",
+        "phones": [
+            {
+            "number": "1234567",
+            "citycode": "1",
+            "contrycode": "57"
+            },
+            {
+            "number": "956433222",
+            "citycode": "1",
+            "contrycode": "57"
+            }
+        ]
+    },
+    {
+        "name": "Pedro Huaman",
+        "email": "huaman@gmail.com",
+        "password": "fjijij4884jjs8#",
+        "phones": [
+            {
+            "number": "95643444444",
+            "citycode": "1",
+            "contrycode": "57"
+            }
+        ]
+    }
+]
+```
