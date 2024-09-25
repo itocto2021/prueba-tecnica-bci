@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.UUID;
 
 /**
  * Controlador REST para manejar las solicitudes relacionadas con los usuarios.
@@ -69,5 +70,61 @@ public class UsuarioController {
     @GetMapping(produces = "application/json")
     public ResponseEntity<?> obtenerUsuarios() throws UsuarioException {
         return new ResponseEntity<>(usuarioService.obtenerUsuarios(),HttpStatus.OK);
+    }
+
+    /**
+     * Obtiene un usuario específico por su ID.
+     *
+     * @param id El ID del usuario a obtener.
+     * @return Un objeto {@link ResponseEntity<UsuarioDTO>} que representa al usuario solicitado.
+     */
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioDTO> obtenerUsuarioPorId(@PathVariable String id) {
+        try {
+            UsuarioDTO usuario = usuarioService.obtenerUsuarioPorId(UUID.fromString(id));
+            return ResponseEntity.ok(usuario);
+        } catch (UsuarioException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+    }
+
+    /**
+     * Actualiza la información de un usuario existente en el sistema.
+     *
+     * @param usuarioDTORequest Objeto que contiene la información actualizada del usuario.
+     * @param authHeader             El token de autenticación para validar la solicitud.
+     * @return Un objeto {@link ResponseEntity<UsuarioResponse>} que contiene información sobre el usuario actualizado.
+     */
+    @PutMapping
+    public ResponseEntity<UsuarioResponse> actualizarUsuario(@Valid @RequestBody UsuarioDTO usuarioDTORequest,
+                                                             @RequestHeader("Authorization") String authHeader) {
+
+        // Extraer el token del encabezado Authorization
+        String token = null;
+        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+            token = authHeader.substring(7);
+        }
+        try {
+            UsuarioResponse response = usuarioService.actualizarUsuario(usuarioDTORequest, token);
+            return ResponseEntity.ok(response);
+        } catch (UsuarioException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+    }
+
+    /**
+     * Elimina un usuario del sistema por su ID.
+     *
+     * @param id El ID del usuario a eliminar.
+     * @return Un objeto {@link ResponseEntity<Void>} que indica el resultado de la operación.
+     */
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> eliminarUsuario(@PathVariable String id) {
+        try {
+            usuarioService.eliminarUsuario(UUID.fromString(id));
+            return ResponseEntity.status(HttpStatus.OK).build(); // 204 No Content
+        } catch (UsuarioException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 }

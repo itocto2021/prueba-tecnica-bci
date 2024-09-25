@@ -2,7 +2,139 @@
 ![Diagrama de solucion](src/main/resources/static/bci-diagram.jpg)
 
 
+# API de Gestión de Usuarios
+
+Este proyecto proporciona una API REST para gestionar usuarios en el sistema. Permite registrar, obtener, actualizar y eliminar usuarios.
+
+## Endpoints
+
+### 1. Registrar un Nuevo Usuario
+
+- **URL**: `/usuario`
+- **Método**: `POST`
+- **Headers**:
+    - `Accept:application/json`
+    - `Authorization:Bearer {{token_bci}}`.
+- **Request Body**:
+  ```json
+  {
+    "name": "Nombre del Usuario",
+    "email": "usuario@example.com",
+    "password": "contraseña",
+    "phones": [
+      {
+        "number": "123456789",
+        "citycode": "01",
+        "contrycode": "52"
+      }
+    ]
+  }
+### 2. Actualizar Usuario
+
+- **URL**: `/usuario`
+- **Método**: `PUT`
+- **Headers**:
+    - `Accept:application/json`
+    - `Authorization:Bearer {{token_bci}}`.
+- **Request Body**:
+  ```json
+  {
+    "id": "d84f96f6-9db6-4f51-a4ee-624a4a510e0b",
+    "name": "Julia",
+    "email": "toctojulian@gmail.org",
+    "password": "Jul123Toc456#",
+    "phones": [
+        {
+            "number": "956433700",
+            "citycode": "1",
+            "contrycode": "51"
+        }
+    ]     
+  }
+### 3. Consultar Usuarios
+
+- **URL**: `/usuario`
+- **Método**: `GET`
+- **Headers**:
+    - `Accept:application/json`
+    - `Authorization:Bearer {{token_bci}}`.
+- **Request Body**:
+  ```json
+  [
+    {
+        "id": "18f3b277-c8ee-46fa-98e7-556c5bec0991",
+        "name": "JuIlderan Rodriguez",
+        "email": "cruzi@rodriguez.org",
+        "password": "Ild123Toc456#",
+        "phones": [
+            {
+                "number": "956433712",
+                "citycode": "1",
+                "contrycode": "57"
+            }
+        ]
+    },
+    {
+        "id": "aa572b71-bc8a-4988-b0d1-9c3c6b02db38",
+        "name": "prueba2 Rodriguez",
+        "email": "prueba2@rodriguez.org",
+        "password": "Ild123Toc456#",
+        "phones": [
+            {
+                "number": "956433712",
+                "citycode": "1",
+                "contrycode": "57"
+            }
+        ]
+    },
+    {
+        "id": "1e724b11-c1b7-4263-b120-3b2bc08503d9",
+        "name": "prueba3 Rodriguez",
+        "email": "prueb3@rodriguez.org",
+        "password": "Ild123Toc456#",
+        "phones": [
+            {
+                "number": "956433712",
+                "citycode": "1",
+                "contrycode": "57"
+            }
+        ]
+    }
+  ]
+### 4. Consultar Usuarios Por Id
+
+- **URL**: `/usuario/18f3b277-c8ee-46fa-98e7-556c5bec0991`
+- **Método**: `GET`
+- **Headers**:
+    - `Accept:application/json`
+    - `Authorization:Bearer {{token_bci}}`.
+- **Request Body**:
+  ```json
+  {
+    "id": "18f3b277-c8ee-46fa-98e7-556c5bec0991",
+    "name": "JuIlderan Rodriguez",
+    "email": "cruzi@rodriguez.org",
+    "password": "Ild123Toc456#",
+    "phones": [
+        {
+            "number": "956433712",
+            "citycode": "1",
+            "contrycode": "57"
+        }
+    ]
+  }
+### 5. Eliminar Usuario
+
+- **URL**: `/usuario/18f3b277-c8ee-46fa-98e7-556c5bec0991`
+- **Método**: `DELETE`
+- **Headers**:
+    - `Accept:application/json`
+    - `Authorization:Bearer {{token_bci}}`.
+
 ## Pasos para Probar la API
+
+descargar la collection de postman e importar
+
 
 ## 1. Autenticación
 
@@ -82,48 +214,3 @@ Authorization:Bearer {pegar aqui el token}
   - Debe contener al menos un carácter especial de los permitidos (!@#$%^&*(),.?":{}|<>~[]£=).
   - Debe tener al menos 8 caracteres de longitud.
 
-## 4. Extra
-Se creo una api para listar todos los Usuarios creados
-
-- **Método**: `GET`
-- **URI**: `http://localhost:8080/usuario`
-#### Agregamos los Headers
-```
-Accept:application/json
-Authorization:Bearer {pegar aqui el token}
-```
-
-#### Response
-```
-[
-    {
-        "name": "Juan Rodriguez",
-        "email": "juan@rodriguez.org",
-        "password": "A234Tun237t3#",
-        "phones": [
-            {
-            "number": "1234567",
-            "citycode": "1",
-            "contrycode": "57"
-            },
-            {
-            "number": "956433222",
-            "citycode": "1",
-            "contrycode": "57"
-            }
-        ]
-    },
-    {
-        "name": "Pedro Huaman",
-        "email": "huaman@gmail.com",
-        "password": "fjijij4884jjs8#",
-        "phones": [
-            {
-            "number": "95643444444",
-            "citycode": "1",
-            "contrycode": "57"
-            }
-        ]
-    }
-]
-```

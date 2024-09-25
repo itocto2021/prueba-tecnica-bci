@@ -40,12 +40,14 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
             return null;
         }
 
+        String id = Objects.isNull(bo.getId()) ? null : String.valueOf(bo.getId());
         String name = Objects.isNull(bo.getName()) ? null : bo.getName();
         String email = Objects.isNull(bo.getEmail()) ? null : bo.getEmail();
         String password = Objects.isNull(bo.getPassword()) ? null : bo.getPassword();
         List<TelefonoDTO> phones = Objects.isNull(bo.getPhones()) ? null : toTelefonoDTOList(bo.getPhones());
 
         return UsuarioDTO.builder()
+                .id(id)
                 .name(name)
                 .email(email)
                 .password(password)
@@ -70,9 +72,6 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
                 .name(name)
                 .email(email)
                 .password(password)
-                .created(LocalDateTime.now())
-                .modified(LocalDateTime.now())
-                .lastLogin(LocalDateTime.now())
                 .isActive(Boolean.TRUE)
                 .phones(phones)
                 .build();

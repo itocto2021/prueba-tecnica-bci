@@ -45,6 +45,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class UsuarioDTO {
+    private String id;
     private String name;
     @Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$", message = Constantes.MSG_INVALID_EMAIL)
     private String email;

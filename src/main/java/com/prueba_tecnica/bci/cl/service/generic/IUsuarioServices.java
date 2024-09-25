@@ -5,6 +5,7 @@ import com.prueba_tecnica.bci.cl.domain.dto.UsuarioResponse;
 import com.prueba_tecnica.bci.cl.exception.UsuarioException;
 
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Esta interfaz define los servicios relacionados con la gestión de usuarios en la aplicación.
@@ -33,4 +34,31 @@ public interface IUsuarioServices {
      * @throws UsuarioException Si ocurre un error al intentar obtener la lista de usuarios.
      */
     List<UsuarioDTO> obtenerUsuarios() throws UsuarioException;
+
+    /**
+     * Obtiene un usuario específico por su ID.
+     *
+     * @param id El ID del usuario a obtener.
+     * @return Un objeto {@link UsuarioDTO} que representa al usuario solicitado.
+     * @throws UsuarioException Si ocurre un error al intentar obtener el usuario.
+     */
+    UsuarioDTO obtenerUsuarioPorId(UUID id) throws UsuarioException;
+
+    /**
+     * Actualiza la información de un usuario existente en el sistema.
+     *
+     * @param usuarioDTORequest Objeto que contiene la información actualizada del usuario.
+     * @param token El token de autenticación para validar la solicitud.
+     * @return Un objeto {@link UsuarioResponse} que contiene información sobre el usuario actualizado.
+     * @throws UsuarioException Si ocurre un error durante la actualización del usuario.
+     */
+    UsuarioResponse actualizarUsuario(UsuarioDTO usuarioDTORequest, String token) throws UsuarioException;
+
+    /**
+     * Elimina un usuario del sistema por su ID.
+     *
+     * @param id El ID del usuario a eliminar.
+     * @throws UsuarioException Si ocurre un error durante la eliminación del usuario.
+     */
+    void eliminarUsuario(UUID id) throws UsuarioException;
 }
