@@ -6,6 +6,10 @@
 
 Este proyecto proporciona una API REST para gestionar usuarios en el sistema. Permite registrar, obtener, actualizar y eliminar usuarios.
 
+## DESCARGAR LAS COLECCIONES DE POSTMAN
+- [BCI.postman_collection.json](src/main/resources/postman/BCI.postman_collection.json)
+- [BCI.postman_environment.json](src/main/resources/postman/BCI.postman_environment.json)
+
 ## Endpoints
 
 ### 1. Registrar un Nuevo Usuario
