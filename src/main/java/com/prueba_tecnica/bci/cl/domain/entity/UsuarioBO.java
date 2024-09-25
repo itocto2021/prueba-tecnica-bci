@@ -10,6 +10,26 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+/**
+ * Esta clase representa el objeto de negocio (BO) para un usuario.
+ *
+ * <p>
+ *
+ * Ejemplo de uso:
+ * <pre>
+ *     UsuarioBO usuarioBO = new UsuarioBO();
+ *     usuarioBO.setName("Juan Perez");
+ *     usuarioBO.setEmail("juan.perez@example.com");
+ *     usuarioBO.setPassword("StrongPassword123");
+ *     usuarioBO.setCreated(LocalDateTime.now());
+ *     usuarioBO.setIsActive(true);
+ * </pre>
+ * </p>
+ *
+ * @author itocto
+ * @version 1.0
+ * @since 25/09/2024
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

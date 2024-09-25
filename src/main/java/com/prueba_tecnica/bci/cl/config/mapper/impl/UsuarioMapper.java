@@ -12,8 +12,28 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Clase responsable de realizar la conversión entre los objetos de transferencia de datos (DTO)
+ * y los objetos de negocio (BO) relacionados con los usuarios.
+ * <p>
+ * Esta clase implementa la interfaz {@link IGenericMapper} para proporcionar métodos de mapeo
+ * específicos entre {@link UsuarioDTO} y {@link UsuarioBO}.
+ * </p>
+ *
+ *
+ * @author itocto
+ * @version 1.0
+ * @since 25/09/2024
+ */
 @Component
 public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
+
+    /**
+     * Convierte un objeto {@link UsuarioBO} a un objeto {@link UsuarioDTO}.
+     *
+     * @param bo El objeto de negocio a convertir.
+     * @return El objeto de transferencia de datos correspondiente, o null si el objeto de negocio es null.
+     */
     @Override
     public UsuarioDTO toDTO(UsuarioBO bo) {
         if (Objects.isNull(bo)) {
@@ -33,6 +53,12 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
                 .build();
     }
 
+    /**
+     * Convierte un objeto {@link UsuarioDTO} a un objeto {@link UsuarioBO}.
+     *
+     * @param dto El objeto de transferencia de datos a convertir.
+     * @return El objeto de negocio correspondiente.
+     */
     @Override
     public UsuarioBO fromDTO(UsuarioDTO dto) {
         String name = Objects.isNull(dto.getName()) ? null : dto.getName();
@@ -56,7 +82,12 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
 
 
 
-    // Método para convertir una lista de TelefonoDTO a una lista de telefonoBO
+    /**
+     * Convierte una lista de objetos {@link TelefonoDTO} a una lista de objetos {@link TelefonoBO}.
+     *
+     * @param phones La lista de objetos de transferencia de datos a convertir.
+     * @return La lista de objetos de negocio correspondientes, o null si la lista es null.
+     */
     private static List<TelefonoBO> toTelefonoBOList(List<TelefonoDTO> phones) {
         if (Objects.isNull(phones)) {
             return null;
@@ -66,7 +97,12 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
                 .collect(Collectors.toList());
     }
 
-    // Método para convertir una lista de TelefonoDTO a una lista de TelefonoBO
+    /**
+     * Convierte una lista de objetos {@link TelefonoBO} a una lista de objetos {@link TelefonoDTO}.
+     *
+     * @param phonesBO La lista de objetos de negocio a convertir.
+     * @return La lista de objetos de transferencia de datos correspondientes, o null si la lista es null.
+     */
     private static List<TelefonoDTO> toTelefonoDTOList(List<TelefonoBO> phonesBO) {
         if (Objects.isNull(phonesBO)) {
             return null;
@@ -77,7 +113,12 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
                 .collect(Collectors.toList());
     }
 
-    // Métodos para mapear un TelefonoDTO a un telefonoBO
+    /**
+     * Convierte un objeto {@link TelefonoDTO} a un objeto {@link TelefonoBO}.
+     *
+     * @param phone El objeto de transferencia de datos a convertir.
+     * @return El objeto de negocio correspondiente, o null si el objeto es null.
+     */
     private static TelefonoBO toTelefonoBO(TelefonoDTO phone) {
         if (phone == null) {
             return null;
@@ -89,7 +130,12 @@ public class UsuarioMapper implements IGenericMapper<UsuarioDTO, UsuarioBO> {
         return bo;
     }
 
-    // Métodos para mapear un TelefonoBO a un telefonoDTO
+    /**
+     * Convierte un objeto {@link TelefonoBO} a un objeto {@link TelefonoDTO}.
+     *
+     * @param bo El objeto de negocio a convertir.
+     * @return El objeto de transferencia de datos correspondiente, o null si el objeto de negocio es null.
+     */
     private static TelefonoDTO toTelefonoDTO(TelefonoBO bo) {
         if (Objects.isNull(bo)) {
             return null;

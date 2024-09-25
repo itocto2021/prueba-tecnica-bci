@@ -9,26 +9,39 @@ import com.prueba_tecnica.bci.cl.domain.entity.UsuarioBO;
 import com.prueba_tecnica.bci.cl.exception.UsuarioException;
 import com.prueba_tecnica.bci.cl.repository.UsuarioRepository;
 import com.prueba_tecnica.bci.cl.service.generic.IUsuarioServices;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
+/**
+ * Implementación de los servicios de gestión de usuarios definidos en la interfaz {@link IUsuarioServices}.
+ * Esta clase proporciona métodos para crear nuevos usuarios y obtener la lista de usuarios existentes.
+ *
+ * @author itocto
+ * @version 1.0
+ * @since 25/09/2024
+ */
+@RequiredArgsConstructor
 @Service
 public class UsuarioServicesImpl implements IUsuarioServices {
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
-    @Autowired
-    private UsuarioMapper usuarioMapper;
+    private final UsuarioMapper usuarioMapper;
 
-    @Autowired
-    private UsuarioResponseMapper responseMapper;
+    private final UsuarioResponseMapper responseMapper;
 
 
+    /**
+     * Crea un nuevo usuario en el sistema.
+     *
+     * @param request Objeto que contiene la información del nuevo usuario a crear.
+     * @param token El token de autenticación para validar la solicitud.
+     * @return Un objeto {@link UsuarioResponse} que contiene información sobre el usuario creado.
+     * @throws UsuarioException Si ocurre un error durante la creación del usuario, como un correo electrónico duplicado.
+     */
     @Override
     public UsuarioResponse crearUsuario(UsuarioDTO request, String token) throws UsuarioException {
 
@@ -46,6 +59,12 @@ public class UsuarioServicesImpl implements IUsuarioServices {
         return response;
     }
 
+    /**
+     * Obtiene la lista de todos los usuarios registrados en el sistema.
+     *
+     * @return Una lista de objetos {@link UsuarioDTO} que representan a los usuarios existentes.
+     * @throws UsuarioException Si ocurre un error al intentar obtener la lista de usuarios.
+     */
     @Override
     public List<UsuarioDTO> obtenerUsuarios() throws UsuarioException {
 
